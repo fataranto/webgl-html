@@ -51,12 +51,17 @@ export default class Sketch {
     // Añade los objetos a la escena
     addObjects() {
         // Crea una geometría de cubo
-        this.geometry = new THREE.BoxGeometry(0.4, 0.4, 0.4);
+        this.geometry = new THREE.PlaneGeometry(0.5, 0.5, 50, 50);
         
         // Crea un material de shader personalizado
         this.material = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0.0 }
+            },
+            side: THREE.DoubleSide,
             fragmentShader: fragment,
-            vertexShader: vertex
+            vertexShader: vertex,
+            wireframe: true
         });
 
         // Crea una malla con la geometría y el material
@@ -69,6 +74,8 @@ export default class Sketch {
         this.time += 0.05; // Incrementa el tiempo para la animación
         this.mesh.rotation.x = this.time / 2000; // Rota la malla en el eje X
         this.mesh.rotation.y = this.time / 1000; // Rota la malla en el eje Y
+
+        this.material.uniforms.time.value = this.time;
 
         this.renderer.render(this.scene, this.camera); // Renderiza la escena desde la perspectiva de la cámara
         window.requestAnimationFrame(this.render.bind(this)); // Solicita el siguiente frame de animación
