@@ -1,0 +1,17 @@
+{
+  "name": "ocean",
+  "version": "1.0.0",
+  "description": "curso Merging WebGL and HTML worlds",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.172.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.7"
+  }
+}
