@@ -1,5 +1,8 @@
 import * as THREE from 'three'; // Importa la biblioteca Three.js
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'; // Importa los controles de órbita
+import fragment from './shaders/fragment.glsl'
+import vertex from './shaders/vertex.glsl'
+
 
 // Definición de la clase Sketch
 export default class Sketch {
@@ -52,17 +55,8 @@ export default class Sketch {
         
         // Crea un material de shader personalizado
         this.material = new THREE.ShaderMaterial({
-            fragmentShader: `
-                precision mediump float; // Define la precisión del fragment shader
-                void main() {
-                    gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0); // Color magenta con opacidad completa
-                }
-            `,
-            vertexShader: `
-                void main() {
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); // Calcula la posición del vértice
-                }
-            `
+            fragmentShader: fragment,
+            vertexShader: vertex
         });
 
         // Crea una malla con la geometría y el material
